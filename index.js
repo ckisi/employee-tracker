@@ -1,10 +1,11 @@
 const inquirer = require('inquirer');
 const { Pool } = require('pg');
+const Department = require('./lib/department.js');
 
 const pool = new Pool(
   {
-    user: '',
-    password: '',
+    user: 'postgres',
+    password: 'root',
     host: 'localhost',
     database: 'employee_tracker_db'
   },
@@ -13,6 +14,9 @@ const pool = new Pool(
 
 pool.connect();
 
+Department.view(pool);
+
+/*
 inquirer
   .prompt([
     {
@@ -27,4 +31,5 @@ inquirer
         'Add an employee', 
         'Update an employee role'],
     },
-  ]);
+  ])
+*/
