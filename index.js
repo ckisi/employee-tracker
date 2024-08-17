@@ -3,11 +3,12 @@ const { Pool } = require('pg');
 const Department = require('./lib/department.js');
 const Role = require('./lib/role.js');
 const Employee = require('./lib/employee.js');
+require('dotenv').config();
 
 const pool = new Pool(
   {
-    user: 'postgres',
-    password: 'root',
+    user: process.env.USER_KEY,
+    password: process.env.PASS_KEY,
     host: 'localhost',
     database: 'employee_tracker_db'
   },
