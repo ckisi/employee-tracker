@@ -1,6 +1,8 @@
 const inquirer = require('inquirer');
 const { Pool } = require('pg');
 const Department = require('./lib/department.js');
+const Role = require('./lib/role.js');
+const Employee = require('./lib/employee.js');
 
 const pool = new Pool(
   {
@@ -15,6 +17,8 @@ const pool = new Pool(
 pool.connect();
 
 Department.view(pool);
+Role.view(pool);
+Employee.view(pool);
 
 /*
 inquirer
