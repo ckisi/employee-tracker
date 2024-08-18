@@ -18,9 +18,8 @@ const pool = new Pool(
 pool.connect();
 
 class CLI {
-  static async initialPrompt() {
-    const data = await inquirer
-    .prompt([
+  async initialPrompt() {
+    const data = await inquirer.prompt([
       {
         type: 'list',
         name: 'option',
@@ -34,22 +33,40 @@ class CLI {
           'Update an employee role'],
       },
     ]);
-    return data;
+      switch(data.option) {
+        case 'View all departments':
+          Department.view(pool);
+          break;
+        case 'View all roles':
+          Role.view(pool);
+          break;
+        case 'View all employees':
+          Employee.view(pool);
+          break;
+        case 'Add a department':
+          const departmentData = await inquirer
+          .prompt([
+            {
+              type: 'input',
+              name: 'name',
+              message: 'What is the name of the department?',
+            },
+          ]);
+            await Department.add(pool, departmentData.name);
+          break;
+        case 'Add a role':
+          const role = this.addRolePrompt();
+          break;
+        case 'Add an employee':
+          const employee = this.addEmployeePrompt();
+          break;
+        case 'Update an employee role':
+          break;
+      }
+      await this.initialPrompt();
   }
 
-  static async addDepartmentPrompt() {
-    const data = await inquirer
-      .prompt([
-        {
-          type: 'input',
-          name: 'name',
-          message: 'What is the name of the department?',
-        },
-      ]);
-      return data;
-  }
-
-  static async addRolePrompt() {
+  async addRolePrompt() {
     const data = await inquirer
       .prompt([
         {
@@ -71,7 +88,7 @@ class CLI {
       return data;
   }
 
-  static async addEmployeePrompt() {
+  async addEmployeePrompt() {
     const data = await inquirer
       .prompt([
         {
@@ -98,7 +115,7 @@ class CLI {
       return data;
   }
 
-  static async updateEmployeePrompt() {
+  async updateEmployeePrompt() {
     const data = await inquirer
       .prompt([
         {
@@ -112,27 +129,5 @@ class CLI {
   }
 }
 
-const data = CLI.initialPrompt();
-
-switch(data) {
-  case 'View all departments':
-    Department.view(pool);
-    break;
-  case 'View all roles':
-    Role.view(pool);
-    break;
-  case 'View all employees':
-    Employee.view(pool);
-    break;
-  case 'Add a department':
-    const department = CLI.addDepartmentPrompt();
-    break;
-  case 'Add a role':
-    const role = CLI.addRolePrompt();
-    break;
-  case 'Add an employee':
-    const employee = CLI.addEmployeePrompt();
-    break;
-  case 'Update an employee role':
-    break;
-}
+const cli = new CLI();
+cli.initialPrompt();
