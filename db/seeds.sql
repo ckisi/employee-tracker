@@ -2,7 +2,7 @@ INSERT INTO departments (name)
 VALUES ('HR'),
        ('Testing');
 
-INSERT INTO roles (title, salary, deparment) 
+INSERT INTO roles (title, salary, department) 
 VALUES ('Developer', 100000.00, 2), 
        ('Code Tester', 90000.00, 2);
 
