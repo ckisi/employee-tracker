@@ -12,8 +12,8 @@ This is a CLI that is first started by running "node index". It will then give y
 - Dotenv
 
 ## Links
-https://github.com/ckisi/employee-tracker
-https://drive.google.com/file/d/1IHxzQ_A-m21ySdZWGy6oDeTtLd4U-Y1z/view
+-Repo: https://github.com/ckisi/employee-tracker
+-Video: https://drive.google.com/file/d/1IHxzQ_A-m21ySdZWGy6oDeTtLd4U-Y1z/view
 
 ## Screenshots
 ![](./assets/employeetrackerss1.png)
