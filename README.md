@@ -10,6 +10,7 @@ This is a CLI that is first started by running "node index". It will then give y
 - Node.js
 - Inquirer
 - Dotenv
+- PostgreSQL
 
 ## Links
 -Repo: https://github.com/ckisi/employee-tracker
